@@ -1,98 +1,67 @@
 #include <iostream>
-#include <string>
-#include <vector>
+#include <limits.h>
 using namespace std;
 
-class Person {
-protected:
-    string name;
-    string address;
-    string phone_no;
-public:
-    void accept() {
-        cout << "Enter name: ";
-        cin >> name;
-        cout << "Enter address: ";
-        cin >> address;
-        cout << "Enter phone number: ";
-        cin >> phone_no;
+class Stack{
+    int capacity;
+    int* arr;
+    int top;
+    public:
+    Stack(int c){
+        this->capacity = c;
+        arr = new int[c];
+        this->top = -1;
     }
-};
 
-class Employee : public Person {
-protected:
-    int eno;
-    string ename;
-public:
-    void accept() {
-        Person::accept();
-        cout << "Enter employee number: ";
-        cin >> eno;
-        cout << "Enter employee name: ";
-        cin >> ename;
-    }
-};
-
-class Manager : public Employee {
-private:
-    string designation;
-    string department_name;
-    double basic_salary;
-public:
-    void accept() {
-        Employee::accept();
-        cout << "Enter designation: ";
-        cin >> designation;
-        cout << "Enter department name: ";
-        cin >> department_name;
-        cout << "Enter basic salary: ";
-        cin >> basic_salary;
-    }
-    double get_salary() const {
-        return basic_salary;
-    }
-};
-
-int main() {
-    int choice, n;
-    vector<Manager> managers;
-    while (true) {
-        cout << "Menu" << endl;
-        cout << "1. Add new manager" << endl;
-        cout << "2. Display manager with highest salary" << endl;
-        cout << "3. Exit" << endl;
-        cout << "Enter your choice: ";
-        cin >> choice;
-        switch (choice) {
-            case 1:
-                cout << "Enter details of manager:" << endl;
-                Manager new_manager;
-                new_manager.accept();
-                managers.push_back(new_manager);
-                break;
-            case 2:
-                if (managers.empty()) {
-                    cout << "No managers added yet!" << endl;
-                } else {
-                    Manager highest_salary_manager = managers[0];
-                    for (int i = 1; i < managers.size(); i++) {
-                        if (managers[i].get_salary() > highest_salary_manager.get_salary()) {
-                            highest_salary_manager = managers[i];
-                        }
-                    }
-                    cout << "Manager with the highest salary is:" << endl;
-                    cout << "Name: " << highest_salary_manager.name << endl;
-                    cout << "Employee Number: " << highest_salary_manager.eno << endl;
-                    cout << "Designation: " << highest_salary_manager.designation << endl;
-                    cout << "Department Name: " << highest_salary_manager.department_name << endl;
-                    cout << "Salary: " << highest_salary_manager.get_salary() << endl;
-                }
-                break;
-            case 3:
-                cout << "Exiting program!" << endl;
-                return 0;
-            default:
-                cout << "Invalid choice! Please enter a valid choice." << endl;
+    void push(int data){
+        if(this->top == this->capacity-1){
+            cout<<"Overflow"<<endl;
+            return;
         }
+        this->top++;
+        this->arr[this->top] = data;
     }
+    int pop(){
+        if(this->top == -1){
+            cout<<"Underflow"<<endl;
+            return INT_MIN;
+        }
+        this->top--;
+    }
+    int gettop(){
+        if(this->top == -1){
+            cout<<"Underflow"<<endl;
+            return INT_MIN;
+        }
+        return this->arr[this->top];
+    }
+
+    bool isEmpty(){
+        return this->top = -1;
+    }
+
+    bool isFull(){
+        return this->top = this->capacity - 1;
+    }
+
+    int size(){
+        return this->top + 1;
+    }
+};
+int main(){
+    Stack st(5);
+    st.push(3);
+    st.push(2);
+    st.push(1);
+    cout<<st.gettop()<<endl;
+    st.push(4);
+    st.push(5);
+    cout<<st.gettop()<<endl;
+    st.push(6);
+    
+    st.pop();
+    st.pop();
+    cout<<st.gettop()<<endl;
+
+    return 0;
 }
