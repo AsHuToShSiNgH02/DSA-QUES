@@ -2,25 +2,32 @@
 #include <stack>
 using namespace std;
 
-void InsertAtBottom(stack<int> &st,int x){
+// stack<int> InsertAtBottom(stack<int> &st,int x){
+//     stack<int> temp;
+//     while(not st.empty()){
+//         int curr = st.top();
+//         st.pop();
+//         temp.push(curr);
+//     }
+//     st.push(x);
+//     while(not temp.empty()){
+//         int curr = temp.top();
+//         temp.pop();
+//         st.push(curr);
+//     }
+//     return st;
+// }
+
+void f(stack<int> &st,int x){
     if(st.empty()){
         st.push(x);
         return;
     }
     int curr = st.top();
     st.pop();
-    InsertAtBottom(st,x);
+    f(st,x);
     st.push(curr);
 }
-
-void reverse(stack<int> &st){
-    if(st.empty()) return;
-    int curr = st.top();
-    st.pop();
-    reverse(st);
-    InsertAtBottom(st,curr);
-}
-
 int main(){
     stack<int> st;
     st.push(1);
@@ -28,7 +35,8 @@ int main(){
     st.push(3);
     st.push(4);
     // stack<int> res = InsertAtBottom(st,100);
-    reverse(st);
+    int x = 100;
+    f(st,x);
     while(not st.empty()){
         int curr = st.top();
         st.pop();
