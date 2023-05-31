@@ -20,7 +20,7 @@ int main(){
         hash[arr[i]] +=1;
     }
 
-    int q;
+    int q;//number of queries to be taked
     cin>>q;
     for(int i = 0;i<q;i++){
         int number;
