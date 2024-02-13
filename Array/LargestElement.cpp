@@ -19,6 +19,6 @@ int largestElement(vector<int> &arr, int n) {
     return largestElement;
 }
 int main(){
-    
+    largestElement();
     return 0;
 }
