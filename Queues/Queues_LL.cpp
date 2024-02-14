@@ -22,10 +22,8 @@ class Queue
  
  
 public:
-    void enqueue(int val)
-    {
-        if (head == NULL)
-        {
+    void enqueue(int val){
+        if (head == NULL){
             head = tail = new Node(val);
             return;
         }
@@ -34,10 +32,8 @@ public:
     }
  
  
-    void dequeue()
-    {
-        if (head == NULL)
-        {
+    void dequeue(){
+        if (head == NULL){
             cout << "The queue is already empty.\n";
             return;
         }
@@ -49,21 +45,18 @@ public:
         free(temp);
     }
     int front(){
-        if (head == NULL)
-            {
-                cout << "There is no element in the queue.\n";
-                return -1;
-            }
+        if (head == NULL){
+            cout << "There is no element in the queue.\n";
+            return -1;
+        }
         return head->val;
-}
-   int size()
-    {
+    }
+    int size(){
         return curr_size;
     }
  
  
-    int isEmpty()
-    {
+    int isEmpty(){
         return head == NULL;
     }
 };
