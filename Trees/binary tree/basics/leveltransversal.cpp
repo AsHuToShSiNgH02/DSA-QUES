@@ -10,7 +10,7 @@ class Node{
 
     Node(int val){
         value = val;
-        left=right=NULL;
+        left=right=NULL;   
     }
 };
 void levelorderTransversal(Node* rootNode){
