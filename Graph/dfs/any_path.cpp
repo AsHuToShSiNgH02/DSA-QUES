@@ -1,11 +1,11 @@
 #include <iostream>
 #include <vector>
-#include <list>
-#include <unordered_set>
+#include <list>             
+#include <unordered_set>    
 using namespace std;
 
-vector<list<int>> graph;
-unordered_set<int> visited;
+vector<list<int>> graph;   
+unordered_set<int> visited; 
 int v; //number of nodes
 
 void add_edge(int src, int dest, bool bi_drct = true){

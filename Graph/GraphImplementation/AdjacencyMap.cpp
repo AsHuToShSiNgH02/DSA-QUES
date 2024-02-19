@@ -22,6 +22,7 @@ void display(){
         cout<<endl;
     }
 }
+
 int main(){
     cout<<"Enter the size of vector : "<<endl;
     cin>>v;
