@@ -26,7 +26,7 @@ void display(){
     }
 }
 
-void bfs(int curr, int end, vector<int> &path){
+void dfs(int curr, int end, vector<int> &path){
     if(curr == end){
         path.push_back(curr);
         result.push_back(path);
@@ -37,7 +37,7 @@ void bfs(int curr, int end, vector<int> &path){
     path.push_back(curr);
     for(auto neighbour: graph[curr]){
         if(!visited.count(neighbour)){
-            bfs(neighbour, end ,path);
+            dfs(neighbour, end ,path);
         }
     }
     path.pop_back();
