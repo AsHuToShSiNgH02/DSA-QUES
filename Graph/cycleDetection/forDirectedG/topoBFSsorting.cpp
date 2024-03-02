@@ -7,7 +7,7 @@ vector<list<int>> graph;
 int v;
 
 void add_edge(int src, int dest, bool bidir = true){
-    graph[src].push_back(src);
+    graph[src].push_back(dest);
     if(bidir){
         graph[dest].push_back(src);
     }
@@ -17,6 +17,7 @@ void topoBFS() {
     vector<int> indegree(v, 0);
     for(int i = 0;i<v;i++){
         for(auto neighbour : graph[i]){
+            //i -----> neighbour
             indegree[neighbour]++;
         }
     }
@@ -46,9 +47,9 @@ void topoBFS() {
 }
 int main(){
     cin>>v;
-    graph.resize(v, list<int>());
     int e;
     cin>>e;
+    graph.resize(v, list<int>());
     while(e--){
         int x, y;
         cin>>x>>y;
