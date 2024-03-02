@@ -20,5 +20,4 @@ int main(){
     cin>>n>>k;
     double val = minCells(n, k);
     cout<<val<<endl;
-    return 0;
 }
