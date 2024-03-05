@@ -7,11 +7,11 @@ int find(vector<int> &parent, int a){
     return parent[a] = ((parent[a] == a) ? a : find(parent,parent[a]));
 }
 
-void Union(vector<int> &par, vector<int>&rank, int a, int b){
+void Union(vector<int> &par, vector<int> &rank, int a, int b){
     a = find(par, a);
     b = find(par, b);
-
-    if(rank[a] >= rank[b]){
+    if(a == b) return;
+    if(rank[a] >= rank[b]){ 
         rank[a]++;
         par[b] = a;
     }else{
@@ -37,20 +37,21 @@ ll Kruskals(vector<Edge> &input, int n, int  e){
     for(int i = 0;i<=n;i++){
         parent[i] = i;
     }
-
-    int edgeCount = 0;
-    int ans = 0;
+    
+    ll ans = 0;
+    int edgeCount = 0; //n -1
     int i =  0;
-    while(edgeCount < n -1 and i < input.size()){
-        Edge curr = input[i];
+    while(edgeCount < n-1 and i < input.size()){
+        Edge curr = input[i]; //becoz input is sorted so we well get min we edge
         int srcPar = find(parent, curr.src);
-        int destPar = find(parent, curr.src);
+        int destPar = find(parent, curr.dest);
         if(srcPar != destPar){
+            //include edges as this will not make cycle
             Union(parent,rank,srcPar,destPar);
             ans += curr.wt;
             edgeCount++; 
         }
-        i++;
+        i++; //doesnt matter we picked the last edge or not we still need to go to next edge
     }
     return ans;
 }
