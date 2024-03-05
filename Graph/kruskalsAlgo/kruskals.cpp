@@ -30,18 +30,18 @@ bool cmp(Edge e1, Edge e2){
     return e1.wt < e2.wt;
 }
 
-ll Kruskals(vector<Edge> &input, int n, int  e){
-    sort(input.begin(),input.end(),cmp);
+ll Kruskals(vector<Edge> &input, int n, int  e){   //O(V + elog(e))
+    sort(input.begin(),input.end(),cmp); //sorted according  to cmp //O(Eln(E))
     vector<int> parent(n+1);
     vector<int> rank(n+1,1);
     for(int i = 0;i<=n;i++){
         parent[i] = i;
     }
-    
+                                      
     ll ans = 0;
     int edgeCount = 0; //n -1
     int i =  0;
-    while(edgeCount < n-1 and i < input.size()){
+    while(edgeCount < n-1 and i < input.size()){// V-1   //O(V LOG*V)
         Edge curr = input[i]; //becoz input is sorted so we well get min we edge
         int srcPar = find(parent, curr.src);
         int destPar = find(parent, curr.dest);
@@ -49,7 +49,7 @@ ll Kruskals(vector<Edge> &input, int n, int  e){
             //include edges as this will not make cycle
             Union(parent,rank,srcPar,destPar);
             ans += curr.wt;
-            edgeCount++; 
+            edgeCount++;                                  
         }
         i++; //doesnt matter we picked the last edge or not we still need to go to next edge
     }
@@ -58,6 +58,7 @@ ll Kruskals(vector<Edge> &input, int n, int  e){
 int main(){
     int n,e;
     cin>>n>>e;
+    //creating edge list
     vector<Edge> v(e);
     for(int i = 0;i<e;i++){
         cin>>v[i].src>>v[i].dest>>v[i].wt;
