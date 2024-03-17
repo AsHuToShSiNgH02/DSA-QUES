@@ -10,7 +10,7 @@ void add_edge(int u ,int v, int wt, bool bidir = true){
     }
 } 
 
-unordered_map <int, int> djikstra(int src, int n){
+unordered_map <int, int> djikstra(int src, int n){     //O(vlogV + ElogV)
     priority_queue<pp, vector<pp> ,greater<pp> > pq;  //store node and wt to reach the node
     //{wt, node}
     unordered_set<int> vis;                           // mark the node visited

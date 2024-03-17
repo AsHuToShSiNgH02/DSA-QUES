@@ -17,6 +17,16 @@ void add_edge(int src, int dest, bool bi_drct = true){
     }
 }
 
+void display(){
+    for(int i = 0;i<graph.size();i++){
+        cout<<i<<" -> ";
+        for(auto e: graph[i]){
+            cout<<e<<" , ";
+        }
+        cout<<endl;
+    }
+}
+
 void bfs(int src ,vector<int> &dist){
     queue<int> qu;
     visited.clear();
@@ -26,7 +36,7 @@ void bfs(int src ,vector<int> &dist){
     qu.push(src);
     while(!qu.empty()){
         int curr = qu.front();
-        cout<<curr<<" ";
+        // cout<<curr<<" ";
         qu.pop();
         for(auto neighbour: graph[curr]){
             if(!visited.count(neighbour)){
@@ -49,6 +59,7 @@ int main(){
         cin>>src>>dest;
         add_edge(src, dest);
     }
+    display();
     int s;
     cin>>s;
     vector<int>dist;
